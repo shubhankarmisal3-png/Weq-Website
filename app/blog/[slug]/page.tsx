@@ -4,7 +4,7 @@ import Navbar from '../../../components/Navbar';
 import Footer from '../../../components/Footer';
 
 export async function generateStaticParams() {
-  const posts = await getPosts(10);
+  const { data: posts } = await getPosts(10);
   return (posts || []).map((post: any) => ({
     slug: post.slug,
   }));
