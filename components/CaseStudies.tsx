@@ -1,128 +1,134 @@
+'use client'
+
+import React from 'react'
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
-import { getCustomPosts } from '../lib/api'
+import { motion } from 'framer-motion'
+import { ArrowRight, MoveUpRight, Zap, Globe, Shield } from 'lucide-react'
+import AnimatedSection from './AnimatedSection'
 
 const fallbackCaseStudies = [
   {
     id: 'dyd',
     title: 'DYD',
     subtitle: 'Car Service App',
-    tags: ['UI/UX Design', 'App & Web Development'],
+    tags: ['UI/UX Design', 'App Development'],
     href: '/case-studies/dyd',
     color: '#e8622a',
     description: 'A modern car service platform connecting customers with verified mechanics.',
+    icon: Zap
   },
   {
     id: 'brego',
     title: 'Brego Land',
-    subtitle: 'Business Intelligence Platform',
-    tags: ['UI/UX Design', 'App & Web Development'],
+    subtitle: 'Business Intelligence',
+    tags: ['UI/UX Design', 'Web App'],
     href: '/case-studies/bregoland',
     color: '#d45a24',
     description: 'End-to-end business analytics and management dashboard for SMEs.',
+    icon: Shield
   },
   {
     id: 'edstate',
     title: 'Edstate',
-    subtitle: 'Real Estate Learning App',
-    tags: ['UI/UX Design', 'App & Web Development'],
+    subtitle: 'Real Estate Learning',
+    tags: ['UI/UX Design', 'LMS App'],
     href: '/case-studies/edstate',
     color: '#c04e1e',
     description: 'An e-learning platform tailored for real estate professionals and learners.',
+    icon: Globe
   },
 ]
 
-export default async function CaseStudies() {
-  const apiCaseStudies = await getCustomPosts('case-studies');
-
-  const caseStudiesToRender = apiCaseStudies && apiCaseStudies.length > 0
-    ? apiCaseStudies.map((cs: any) => ({
-        id: cs.slug,
-        title: cs.title?.rendered,
-        subtitle: cs.acf?.subtitle || cs.slug.replace('-', ' '),
-        tags: cs.acf?.tags || ['UI/UX Design', 'App & Web Development'],
-        href: `/case-studies/${cs.slug}`,
-        color: cs.acf?.color || '#e8622a',
-        description: cs.acf?.description || cs.content?.rendered?.replace(/(<([^>]+)>)/gi, "").substring(0, 150) || '',
-      }))
-    : fallbackCaseStudies;
-
+export default function CaseStudies() {
   return (
-    <section className="py-20 lg:py-28 bg-[#fcfaf9]">
+    <section className="py-24 lg:py-40 bg-[#1e1b18] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#1c1a19] tracking-tight mb-4">
-            Customer Stories
-          </h2>
-          <p className="text-gray-600 text-base max-w-2xl mx-auto">
-            Explore success stories from WEQ Technologies, where we&apos;ve delivered outstanding
-            work for clients like Allana, Bhaav.in, Vet Education, and many others.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          {caseStudiesToRender.map((cs: any) => (
+        <div className="flex flex-col lg:flex-row items-end justify-between gap-12 mb-20 px-4">
+          <div className="max-w-3xl text-left">
+            <AnimatedSection x={-30}>
+              <span className="inline-block text-[#e8622a] text-sm font-bold tracking-[0.2em] uppercase mb-8">
+                Portfolio of Impact
+              </span>
+              <h2 className="text-4xl sm:text-5xl lg:text-5xl font-extrabold text-white leading-tight">
+                Crafting Success <br/>
+                Through <span className="text-[#e8622a]">Digital Excellence</span>
+              </h2>
+            </AnimatedSection>
+          </div>
+          
+          <AnimatedSection x={30}>
             <Link
-              key={cs.id}
-              href={cs.href}
-              className="group bg-white border border-gray-100 shadow-[0_8px_30px_rgba(0,0,0,0.04)] rounded-2xl overflow-hidden hover:border-orange-200 hover:shadow-[0_20px_40px_rgba(232,98,42,0.1)] transition-all duration-300 hover:-translate-y-1"
+              href="/case-studies"
+              className="group inline-flex items-center gap-3 bg-[#e8622a] hover:bg-[#f07040] text-white px-8 py-4 rounded-full text-base font-bold transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg shadow-[#e8622a]/20"
             >
-              {/* Color header */}
-              <div
-                className="h-48 flex items-center justify-center relative overflow-hidden"
-                style={{ backgroundColor: cs.color + '15' }}
-              >
-                <div
-                  className="w-20 h-20 rounded-2xl flex items-center justify-center text-white font-extrabold text-2xl shadow-lg"
-                  style={{ backgroundColor: cs.color }}
-                >
-                  {cs.title.charAt(0)}
-                </div>
-                <div
-                  className="absolute inset-0 opacity-[0.05]"
-                  style={{
-                    backgroundImage: `radial-gradient(circle at 70% 50%, ${cs.color} 0%, transparent 60%)`,
-                  }}
-                />
-              </div>
-
-              <div className="p-6">
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2 mb-3">
-                  {cs.tags.map((tag: string) => (
-                    <span
-                      key={tag}
-                      className="text-xs text-[#e8622a] bg-[#e8622a]/10 border border-[#e8622a]/20 rounded-full px-3 py-1 font-medium"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <h3 className="text-xl font-bold text-[#1c1a19] mb-1 group-hover:text-[#e8622a] transition-colors">
-                  {cs.title}
-                </h3>
-                <p className="text-gray-500 text-sm mb-3 font-medium">{cs.subtitle}</p>
-                <p className="text-gray-600 text-sm leading-relaxed mb-4">{cs.description}</p>
-
-                <div className="flex items-center gap-2 text-[#e8622a] text-sm font-semibold group-hover:gap-3 transition-all">
-                  View Case Study <ArrowRight className="w-4 h-4" />
-                </div>
-              </div>
+              View All Studies
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
-          ))}
+          </AnimatedSection>
         </div>
 
-        <div className="text-center">
-          <Link
-            href="/case-studies"
-            className="btn-orange inline-flex items-center gap-2 px-8 py-4 rounded-full text-white font-semibold text-base"
-          >
-            View All Case Studies
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {fallbackCaseStudies.map((cs, index) => (
+            <CaseStudyCard key={cs.id} cs={cs} index={index} />
+          ))}
         </div>
       </div>
     </section>
+  )
+}
+
+function CaseStudyCard({ cs, index }: { cs: any, index: number }) {
+  const Icon = cs.icon || Zap;
+  
+  return (
+    <AnimatedSection delay={index * 0.15} y={30}>
+      <Link
+        href={cs.href}
+        className="group relative flex flex-col h-full bg-[#262220] border border-[#3a3330] p-10 rounded-[2.5rem] overflow-hidden hover:border-[#e8622a]/40 transition-all duration-500 shadow-2xl"
+      >
+        {/* Subtle Background Glow */}
+        <div 
+          className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-700 pointer-events-none"
+          style={{ background: `radial-gradient(circle at 50% 10%, ${cs.color} 0%, transparent 60%)` }}
+        />
+
+        <div className="flex items-center justify-between mb-10 relative z-10">
+           <div className="w-14 h-14 bg-[#e8622a]/10 rounded-2xl flex items-center justify-center text-[#e8622a] group-hover:bg-[#e8622a] group-hover:text-white transition-all duration-500">
+              <Icon className="w-7 h-7" />
+           </div>
+           <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/40 group-hover:text-[#e8622a] group-hover:border-[#e8622a]/40 transition-all group-hover:rotate-45">
+              <MoveUpRight className="w-5 h-5" />
+           </div>
+        </div>
+
+        <div className="flex flex-col flex-1 relative z-10 text-left">
+          <div className="flex flex-wrap gap-2 mb-6">
+            {cs.tags.map((tag: string) => (
+              <span
+                key={tag}
+                className="text-[10px] font-extrabold text-[#e8622a] uppercase tracking-wider bg-[#e8622a]/10 border border-[#e8622a]/20 rounded-full px-4 py-1.5"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          <h3 className="text-2xl font-extrabold text-white mb-3 group-hover:text-[#e8622a] transition-colors leading-tight">
+            {cs.title}
+          </h3>
+          <p className="text-gray-500 text-sm font-bold uppercase tracking-widest mb-6">
+            {cs.subtitle}
+          </p>
+          <p className="text-gray-400 text-base leading-relaxed mb-10 flex-grow font-medium line-clamp-3">
+            {cs.description}
+          </p>
+
+          <div className="mt-auto pt-8 border-t border-[#3a3330] flex items-center justify-between">
+             <span className="text-white font-bold text-sm">View Case Study</span>
+             <ArrowRight className="w-5 h-5 text-[#e8622a] group-hover:translate-x-2 transition-transform" />
+          </div>
+        </div>
+      </Link>
+    </AnimatedSection>
   )
 }

@@ -39,10 +39,13 @@ export default function Navbar() {
               <div key={link.label} className="relative group dropdown-parent">
                 {link.children ? (
                   <>
-                    <button className="flex items-center gap-1 px-4 py-2 text-sm text-gray-200 hover:text-white transition-colors rounded-md hover:bg-white/5">
+                    <Link
+                      href={link.href}
+                      className="flex items-center gap-1 px-4 py-2 text-sm text-gray-200 hover:text-white transition-colors rounded-md hover:bg-white/5"
+                    >
                       {link.label}
                       <ChevronDown className="w-3.5 h-3.5 opacity-70 group-hover:rotate-180 transition-transform duration-200" />
-                    </button>
+                    </Link>
                     <div className="dropdown-menu absolute top-full left-0 mt-1 w-52 bg-[#262220] border border-[#3a3330] rounded-xl shadow-2xl py-2 z-50">
                       {link.children.map((child) => (
                         <Link
