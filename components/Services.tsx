@@ -14,6 +14,32 @@ const serviceIconsMap: Record<string, any> = {
   'ux-design': Palette,
 }
 
+const itemDescriptions: Record<string, string> = {
+  'Web App Development': 'Scalable web architectures built for high-traffic performance.',
+  'Mobile App Development': 'Native experiences that feel premium and respond instantly.',
+  'Flutter App Development': 'Cross-platform excellence with a single high-performance codebase.',
+  'Python Applications': 'Complex backend logic and data processing made simple.',
+  'LMS Development': 'Customized learning management systems for education at scale.',
+  'Java Application Development': 'Robust, secure, and enterprise-grade Java solutions.',
+  'WordPress Development': 'Flexible content management systems for dynamic businesses.',
+  'Shopify Development': 'Scalable e-commerce solutions for global retail growth.',
+  'WooCommerce Development': 'Seamless shop integration for existing WordPress ecosystems.',
+  'Drupal Development': 'High-security, enterprise-level digital experience platforms.',
+  'Webflow Development': 'Visual development with clean code for modern brand experiences.',
+  'Technology Assessment': 'Comprehensive audit of your current tech stack for optimization.',
+  'Fractional CTO': 'Expert technical leadership and strategy on a flexible basis.',
+  'Business Consultancy': 'Strategic advice to align technology with your business goals.',
+  'ERP Software Development': 'Custom enterprise resource planning systems for your needs.',
+  'CRM Development': 'Relationship management solutions to boost customer retention.',
+  'Custom Software Development': 'Bespoke software tailored to solve your unique challenges.',
+  'Integration': 'Seamlessly connecting your systems for better data flow.',
+  'Website Design': 'Breathtaking visual design combined with functional excellence.',
+  'UI/UX Design': 'User-centric interfaces designed for conversion and retention.',
+  'Illustration Design': 'Custom visual storytelling through high-end vector art.',
+  'UX Audit': 'Data-driven analysis of your user experience to find friction.',
+  'Mobile App Design': 'Stunning mobile interfaces crafted for intuitive interaction.',
+}
+
 export default function Services({ apiServices }: { apiServices?: any[] }) {
   // Map API services to standard format or use fallback
   const servicesToRender = apiServices && apiServices.length > 0
@@ -27,71 +53,101 @@ export default function Services({ apiServices }: { apiServices?: any[] }) {
     : fallbackServices.map(s => ({...s, icon: serviceIconsMap[s.id] || Globe}));
 
   return (
-    <section className="py-24 lg:py-40 bg-[#231f1c] overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 mb-20 px-4">
+    <section className="py-24 lg:py-40 bg-[#0a0a0a] overflow-hidden relative">
+      {/* Decorative Blur */}
+      <div className="absolute top-[20%] left-[-10%] w-[600px] h-[600px] bg-[#e8622a]/5 rounded-full blur-[150px] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 mb-32">
           <div className="max-w-3xl">
             <AnimatedSection x={-30}>
-              <span className="inline-block text-[#e8622a] text-sm font-bold tracking-[0.2em] uppercase mb-6">
-                Our Expertise
-              </span>
-               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight">
+              <div className="flex items-center gap-3 mb-8">
+                 <span className="w-10 h-[2px] bg-[#e8622a]"></span>
+                 <span className="text-[#e8622a] text-xs font-black tracking-[0.4em] uppercase">Service Ecosystem</span>
+              </div>
+              <h2 className="text-4xl sm:text-5xl lg:text-7xl font-black text-white leading-[1.05] tracking-tight">
                 Driving Growth Through <br/>
-                <span className="text-[#e8622a]">Innovation</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#e8622a] to-[#ffb088]">Digital Innovation</span>
               </h2>
             </AnimatedSection>
           </div>
           <div className="flex-shrink-0">
-             <AnimatedSection x={30}>
-               <Link
+            <AnimatedSection x={30}>
+              <Link
                 href="/services"
-                className="group inline-flex items-center gap-3 bg-white/5 hover:bg-[#e8622a] text-white px-8 py-4 rounded-full text-lg font-bold transition-all duration-300 hover:scale-105 active:scale-95"
+                className="group relative inline-flex items-center gap-3 bg-white hover:bg-[#e8622a] text-black hover:text-white px-10 py-5 rounded-full text-base font-black transition-all duration-500 hover:scale-105 active:scale-95 shadow-2xl"
               >
-                All Services
+                View All Expertise
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </AnimatedSection>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 px-4">
-          {servicesToRender.map((service: any, index: number) => {
+        {/* Services Blocks */}
+        <div className="flex flex-col gap-32 lg:gap-48">
+          {servicesToRender.map((service, index) => {
             const Icon = service.icon || Globe;
+            const isEven = index % 2 === 1;
+
             return (
-              <AnimatedSection key={service.id} delay={index * 0.15}>
-                <motion.div
-                  whileHover={{ y: -10, scale: 1.05 }}
-                  className="group relative bg-[#1e1b18] border border-[#3a3330] rounded-[2.5rem] p-10 overflow-hidden hover:border-[#e8622a]/30 transition-all duration-500 h-full flex flex-col"
-                >
-                  {/* Glowing radial background on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#e8622a]/0 to-[#e8622a]/0 group-hover:from-[#e8622a]/5 group-hover:to-transparent transition-all duration-500" />
-                  
-                  <div className="relative z-10 flex flex-col h-full">
-                    <div className="flex items-center justify-between mb-10">
-                      <div className="w-16 h-16 bg-[#e8622a]/10 rounded-2xl flex items-center justify-center border border-[#e8622a]/20 group-hover:bg-[#e8622a] group-hover:border-transparent transition-all duration-500">
-                        <Icon className="w-8 h-8 text-[#e8622a] group-hover:text-white transition-all duration-500" />
+              <div key={service.id} className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-16 lg:gap-32`}>
+                
+                {/* Sub-items Side */}
+                <div className="w-full lg:w-3/5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-12">
+                    {service.items.slice(0, 6).map((item: string, idx: number) => (
+                      <AnimatedSection key={idx} delay={idx * 0.05} y={20}>
+                        <div className="group relative">
+                          <h4 className="text-xl font-black text-white mb-3 group-hover:text-[#e8622a] transition-colors leading-tight">
+                            {item}
+                          </h4>
+                          <p className="text-gray-500 text-base leading-relaxed opacity-70 group-hover:opacity-100 transition-opacity">
+                            {itemDescriptions[item] || 'High-performance engineering tailored to your unique scaling requirements.'}
+                          </p>
+                        </div>
+                      </AnimatedSection>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Main Info Side */}
+                <div className="w-full lg:w-2/5">
+                  <AnimatedSection x={isEven ? -30 : 30}>
+                    <div className="flex flex-col p-12 bg-[#121110] border border-white/5 rounded-[3rem] hover:border-[#e8622a]/30 transition-all duration-700 relative overflow-hidden group">
+                      {/* Glow Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-[#e8622a]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                      
+                      <div className="relative z-10">
+                        <div className="flex items-center gap-6 mb-10">
+                          <div className="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center group-hover:bg-[#e8622a] transition-all duration-500 shadow-2xl">
+                            <Icon className="w-8 h-8 text-[#e8622a] group-hover:text-white transition-colors" />
+                          </div>
+                          <h3 className="text-3xl sm:text-4xl font-black text-white group-hover:text-[#e8622a] transition-colors leading-tight">
+                            {service.title}
+                          </h3>
+                        </div>
+                        <p className="text-gray-400 text-lg leading-relaxed mb-12 opacity-80 group-hover:opacity-100 transition-opacity">
+                          {service.description}
+                        </p>
+                        
+                        <div className="flex items-center justify-between pt-10 border-t border-white/5">
+                           <Link
+                            href={`/services/${service.id}`}
+                            className="group inline-flex items-center gap-3 text-white/40 font-black text-sm uppercase tracking-widest hover:text-[#e8622a] transition-colors"
+                          >
+                            Learn More 
+                            <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-500" />
+                          </Link>
+                          <span className="text-white/5 text-4xl font-black">{String(index + 1).padStart(2, '0')}</span>
+                        </div>
                       </div>
                     </div>
+                  </AnimatedSection>
+                </div>
 
-                    <h3 className="text-xl sm:text-2xl font-extrabold text-white mb-4 group-hover:text-[#e8622a] transition-colors leading-tight">
-                      {service.title}
-                    </h3>
-                    
-                    <p className="text-gray-400 text-base leading-relaxed mb-8 flex-grow">
-                      {service.description}
-                    </p>
-
-                    <div className="mt-auto pt-8 border-t border-[#3a3330] group-hover:border-[#e8622a]/20">
-                       <Link
-                        href={`/services/${service.id}`}
-                        className="inline-flex items-center gap-3 text-[#e8622a] text-sm font-bold uppercase tracking-widest group-hover:gap-5 transition-all"
-                      >
-                        Explore <ArrowRight className="w-5 h-5" />
-                      </Link>
-                    </div>
-                  </div>
-                </motion.div>
-              </AnimatedSection>
+              </div>
             )
           })}
         </div>

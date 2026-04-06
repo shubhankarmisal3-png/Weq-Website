@@ -18,8 +18,8 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-[#1e1b18]/95 backdrop-blur-sm shadow-lg' : 'bg-[#1e1b18]'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled ? 'bg-[#0a0a0a]/90 backdrop-blur-xl shadow-2xl py-1' : 'bg-[#0a0a0a]/50 py-2'
       }`}
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -90,7 +90,7 @@ export default function Navbar() {
 
         {/* Mobile Nav */}
         {mobileOpen && (
-          <div className="lg:hidden bg-[#1e1b18] border-t border-[#3a3330] py-4 space-y-1">
+          <div className="lg:hidden bg-[#0a0a0a] border-t border-white/5 py-4 space-y-1">
             {navLinks.map((link) => (
               <div key={link.label}>
                 {link.children ? (

@@ -15,8 +15,22 @@ export async function fetchAPI(endpoint: string, options: RequestInit = {}) {
       console.error(`[API] FAILED to fetch ${endpoint}. Status: ${res.status}`);
       return { data: null, totalPages: 0, totalPosts: 0 };
     }
+
+    const contentType = res.headers.get('content-type');
+    if (!contentType || !contentType.includes('application/json')) {
+      const text = await res.text();
+      console.error(`[API] NON-JSON response received for ${endpoint}. Content-Type: ${contentType}. Body preview: ${text.substring(0, 100)}`);
+      return { data: null, totalPages: 0, totalPosts: 0 };
+    }
     
-    const data = await res.json();
+    let data;
+    try {
+      data = await res.json();
+    } catch (parseError) {
+      console.error(`[API] JSON PARSE ERROR for ${endpoint}:`, parseError);
+      return { data: null, totalPages: 0, totalPosts: 0 };
+    }
+    
     const totalPosts = parseInt(res.headers.get('x-wp-total') || '0');
     const totalPages = parseInt(res.headers.get('x-wp-totalpages') || '0');
 
