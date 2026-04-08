@@ -59,7 +59,7 @@ export default function BlogPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="text-center mb-16 px-4">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6">
+            <h1 className="text-white mb-6">
               Insights, Trends & Tech Blogs from WEQ
             </h1>
             <p className="text-gray-400 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
@@ -104,7 +104,7 @@ export default function BlogPage() {
                     </div>
 
                     <div className="p-8 flex-1 flex flex-col">
-                      <h2 className="text-xl md:text-2xl font-bold text-white mb-4 group-hover:text-[#e8622a] transition-colors leading-tight line-clamp-2 uppercase">
+                      <h2 className="text-white mb-4 group-hover:text-[#e8622a] transition-colors leading-tight line-clamp-2 uppercase">
                         <Link href={`/blog/${post.slug}`}>
                           <span dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
                         </Link>

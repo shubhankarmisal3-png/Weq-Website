@@ -2,8 +2,8 @@
 
 import React from 'react'
 import Link from 'next/link'
-import ParticlesBackground from './ParticlesBackground'
 import { motion } from 'framer-motion'
+import OrbAnimation from './OrbAnimation'
 
 type HeroProps = {
   title?: string;
@@ -18,22 +18,19 @@ export default function Hero({ title, highlight, description }: HeroProps) {
 
   return (
     <section className="relative min-h-[90vh] lg:min-h-screen bg-[#0a0a0a] flex items-center pt-24 overflow-hidden">
-      {/* Dynamic Particle Layer */}
-      <div className="absolute inset-0 z-0">
-        <ParticlesBackground />
-      </div>
-
       {/* Radial Gradient Glows */}
-      <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">
+      {/* <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">
         <div className="absolute top-[10%] right-[10%] w-[500px] h-[500px] bg-[#e8622a]/10 rounded-full blur-[120px] animate-pulse" />
         <div className="absolute bottom-[20%] left-[5%] w-[400px] h-[400px] bg-[#e8622a]/5 rounded-full blur-[100px]" />
-      </div>
+      </div> */}
+
+      <OrbAnimation />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-16 lg:py-24 relative z-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
           
           {/* Left - Text Content */}
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-7 scott">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -45,7 +42,7 @@ export default function Hero({ title, highlight, description }: HeroProps) {
                   Leading Technical Partners
                 </span>
               </div>
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black leading-[1.05] tracking-tight text-white mb-8">
+              <h1 className="hero-banner-heading leading-[1.05] tracking-tight text-white mb-8">
                 {heroTitle}
                 <br/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#e8622a] to-[#ffb088]">

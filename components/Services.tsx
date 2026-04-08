@@ -66,7 +66,7 @@ export default function Services({ apiServices }: { apiServices?: any[] }) {
                  <span className="w-10 h-[2px] bg-[#e8622a]"></span>
                  <span className="text-[#e8622a] text-xs font-black tracking-[0.4em] uppercase">Service Ecosystem</span>
               </div>
-              <h2 className="text-4xl sm:text-5xl lg:text-7xl font-black text-white leading-[1.05] tracking-tight">
+              <h2 className="text-white leading-[1.05] tracking-tight">
                 Driving Growth Through <br/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#e8622a] to-[#ffb088]">Digital Innovation</span>
               </h2>
@@ -100,7 +100,7 @@ export default function Services({ apiServices }: { apiServices?: any[] }) {
                     {service.items.slice(0, 6).map((item: string, idx: number) => (
                       <AnimatedSection key={idx} delay={idx * 0.05} y={20}>
                         <div className="group relative">
-                          <h4 className="text-xl font-black text-white mb-3 group-hover:text-[#e8622a] transition-colors leading-tight">
+                          <h4 className="text-white mb-3 group-hover:text-[#e8622a] transition-colors leading-tight">
                             {item}
                           </h4>
                           <p className="text-gray-500 text-base leading-relaxed opacity-70 group-hover:opacity-100 transition-opacity">
@@ -124,7 +124,7 @@ export default function Services({ apiServices }: { apiServices?: any[] }) {
                           <div className="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center group-hover:bg-[#e8622a] transition-all duration-500 shadow-2xl">
                             <Icon className="w-8 h-8 text-[#e8622a] group-hover:text-white transition-colors" />
                           </div>
-                          <h3 className="text-3xl sm:text-4xl font-black text-white group-hover:text-[#e8622a] transition-colors leading-tight">
+                          <h3 className="text-white group-hover:text-[#e8622a] transition-colors leading-tight">
                             {service.title}
                           </h3>
                         </div>

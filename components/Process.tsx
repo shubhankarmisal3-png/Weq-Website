@@ -11,7 +11,7 @@ export default function Process() {
              <span className="text-[#e8622a] text-xs font-black tracking-[0.4em] uppercase">The Roadmap</span>
              <span className="w-10 h-[2px] bg-[#e8622a]"></span>
           </div>
-          <h2 className="text-4xl sm:text-5xl lg:text-7xl font-black text-white leading-[1.05] tracking-tight">
+          <h2 className="text-white leading-[1.05] tracking-tight">
             Pioneering Your Path to <br/>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#e8622a] to-[#ffb088]">Digital Excellence</span>
           </h2>
@@ -36,7 +36,7 @@ export default function Process() {
               </div>
 
               <div className="text-center">
-                 <h3 className="text-2xl font-black text-white mb-6 group-hover:text-[#e8622a] transition-colors">{step.title}</h3>
+                 <h3 className="text-white mb-6 group-hover:text-[#e8622a] transition-colors">{step.title}</h3>
                  <p className="text-gray-500 text-lg leading-relaxed max-w-sm mx-auto opacity-70 group-hover:opacity-100 transition-opacity">
                    {step.description}
                  </p>

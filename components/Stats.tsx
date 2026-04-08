@@ -66,7 +66,7 @@ export default function Stats() {
                   <span className="w-10 h-[2px] bg-[#e8622a]"></span>
                   <span className="text-[#e8622a] text-xs font-black tracking-[0.4em] uppercase">Impact & Numbers</span>
                </div>
-               <h2 className="text-4xl sm:text-5xl lg:text-7xl font-black text-white leading-[1.05] mb-10 tracking-tight">
+               <h2 className="text-white leading-[1.05] mb-10 tracking-tight">
                 Fuelling Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#e8622a] to-[#ffb088]">Digital Success</span>
               </h2>
               <p className="text-gray-400 text-lg leading-relaxed max-w-xl opacity-70">
@@ -90,7 +90,7 @@ export default function Stats() {
 
           {/* Locations */}
           <div className="mt-24 pt-20 border-t border-white/5">
-            <h3 className="text-sm font-black text-white/30 uppercase tracking-[0.5em] mb-12 text-center lg:text-left">
+            <h3 className="text-white/30 uppercase tracking-[0.5em] mb-12 text-center lg:text-left">
               Global Presence
             </h3>
             <div className="flex flex-wrap justify-center lg:justify-start items-center gap-10 lg:gap-16">
