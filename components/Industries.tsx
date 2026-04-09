@@ -1,3 +1,5 @@
+'use client'
+import React, { useState } from 'react'
 import { industries } from '../lib/data'
 
 const industryIcons: Record<string, string> = {
@@ -9,6 +11,17 @@ const industryIcons: Record<string, string> = {
   'News & Publication': '📰',
   'Supply Chain & Logistics': '📦',
   'Food & Beverages': '🍽️',
+}
+
+const industryThemes: Record<string, { color: string; glow: string }> = {
+  'Healthcare & Fitness': { color: '#f43f5e', glow: 'from-[#f43f5e]/10' },
+  'Manufacturing & Automobile Industry': { color: '#3b82f6', glow: 'from-[#3b82f6]/10' },
+  'E-commerce & Retail': { color: '#10b981', glow: 'from-[#10b981]/10' },
+  'Education and E-Learning': { color: '#8b5cf6', glow: 'from-[#8b5cf6]/10' },
+  'Banking & Finance': { color: '#f59e0b', glow: 'from-[#f59e0b]/10' },
+  'News & Publication': { color: '#06b6d4', glow: 'from-[#06b6d4]/10' },
+  'Supply Chain & Logistics': { color: '#e8622a', glow: 'from-[#e8622a]/10' },
+  'Food & Beverages': { color: '#84cc16', glow: 'from-[#84cc16]/10' },
 }
 
 export default function Industries() {
@@ -31,26 +44,46 @@ export default function Industries() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {industries.map((industry, i) => (
-            <div
-              key={industry}
-              className="group relative bg-[#121110] border border-white/5 rounded-3xl p-8 transition-all duration-500 hover:border-[#e8622a]/30 hover:-translate-y-2"
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-[#e8622a]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-3xl" />
-              
-              <div className="relative z-10">
-                <div className="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:bg-[#e8622a] group-hover:text-white transition-all duration-500">
-                  {industryIcons[industry] || '💼'}
-                </div>
-                <h3 className="text-lg font-black text-white group-hover:text-[#e8622a] transition-colors leading-tight">
-                  {industry}
-                </h3>
-              </div>
-            </div>
-          ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {industries.map((industry, i) => {
+            const theme = industryThemes[industry] || { color: '#e8622a', glow: 'from-[#e8622a]/10' };
+            return <IndustryCard key={industry} industry={industry} theme={theme} />;
+          })}
         </div>
       </div>
     </section>
   )
+}
+
+function IndustryCard({ industry, theme }: { industry: string; theme: any }) {
+  const [isHovered, setIsHovered] = useState(false);
+  
+  return (
+    <div
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="group relative bg-gradient-to-br from-[#121110] to-[#0a0a0a] border border-white/5 rounded-[2.5rem] p-10 transition-all duration-500 hover:-translate-y-2 shadow-2xl"
+      style={{ borderColor: isHovered ? `${theme.color}4d` : 'rgba(255,255,255,0.05)' }}
+    >
+      <div 
+        className="absolute inset-0 bg-gradient-to-br to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-[2.5rem]" 
+        style={{ backgroundImage: `linear-gradient(to bottom right, ${theme.color}1a, transparent)` }}
+      />
+      
+      <div className="relative z-10">
+        <div 
+            className="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center text-3xl mb-8 transition-all duration-500 group-hover:rotate-6"
+            style={{ backgroundColor: isHovered ? theme.color : 'rgba(255,255,255,0.05)', color: isHovered ? 'white' : 'inherit' }}
+        >
+          {industryIcons[industry] || '💼'}
+        </div>
+        <h3 
+            className="font-black text-white transition-colors leading-tight !text-[20px]"
+            style={{ color: isHovered ? theme.color : 'white' }}
+        >
+          {industry}
+        </h3>
+      </div>
+    </div>
+  );
 }

@@ -21,10 +21,13 @@ function useCountUp(target: number, duration: number = 2000, start: boolean = fa
   return count
 }
 
-function StatItem({ value, suffix, label }: { value: number; suffix: string; label: string }) {
+function StatItem({ value, suffix, label, colorClass }: { value: number; suffix: string; label: string; colorClass?: string }) {
   const [started, setStarted] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
   const count = useCountUp(value, 2000, started)
+  const defaultColorClass = "from-white via-[#e8622a] to-[#ffb088]";
+  const actualColorClass = colorClass || defaultColorClass;
+  const labelColorClass = colorClass ? (colorClass.includes('06b6d4') ? 'text-[#06b6d4]' : 'text-[#e8622a]') : 'text-[#e8622a]';
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -38,9 +41,11 @@ function StatItem({ value, suffix, label }: { value: number; suffix: string; lab
   return (
     <div ref={ref} className="text-center lg:text-left">
       <div className="text-6xl sm:text-7xl font-black text-white mb-4 leading-none tracking-tight">
-        {count}{suffix}
+        <span className={`text-transparent bg-clip-text bg-gradient-to-r ${actualColorClass}`}>
+          {count}{suffix}
+        </span>
       </div>
-      <div className="text-[#e8622a] text-sm font-black uppercase tracking-[0.3em]">{label}</div>
+      <div className={`${labelColorClass} text-sm font-black uppercase tracking-[0.3em]`}>{label}</div>
     </div>
   )
 }
@@ -50,7 +55,8 @@ export default function Stats() {
     <section className="py-24 lg:py-32 bg-[#0a0a0a] relative overflow-hidden">
       {/* Decorative Blur Backgrounds */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#e8622a]/5 rounded-full blur-[160px]" />
+        <div className="absolute top-1/4 left-1/4 w-[600px] h-[300px] bg-[#e8622a]/5 rounded-full blur-[160px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[300px] bg-[#06b6d4]/5 rounded-full blur-[160px]" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -83,7 +89,12 @@ export default function Stats() {
                
                <div className="flex flex-col gap-14">
                   <StatItem value={500} suffix="+" label="Projects Completed" />
-                  <StatItem value={200} suffix="+" label="Clients Across Globe" />
+                  <StatItem 
+                    value={200} 
+                    suffix="+" 
+                    label="Clients Across Globe" 
+                    colorClass="from-white via-[#06b6d4] to-[#a5f3fc]" 
+                  />
                </div>
             </div>
           </div>

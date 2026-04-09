@@ -4,6 +4,7 @@ import React from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import OrbAnimation from './OrbAnimation'
+import '../styles/stars.css'
 
 type HeroProps = {
   title?: string;
@@ -18,24 +19,30 @@ export default function Hero({ title, highlight, description }: HeroProps) {
 
   return (
     <section className="relative min-h-[90vh] lg:min-h-screen bg-[#0a0a0a] flex items-center pt-24 overflow-hidden">
-      {/* Radial Gradient Glows */}
-      {/* <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">
-        <div className="absolute top-[10%] right-[10%] w-[500px] h-[500px] bg-[#e8622a]/10 rounded-full blur-[120px] animate-pulse" />
-        <div className="absolute bottom-[20%] left-[5%] w-[400px] h-[400px] bg-[#e8622a]/5 rounded-full blur-[100px]" />
-      </div> */}
+      {/* Radial Gradient Glows - Multi-Color Atmosphere */}
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+        {/* Primary Orange - Top Right */}
+        <div className="absolute -top-[10%] -right-[10%] w-[600px] h-[600px] bg-[#e8622a]/15 rounded-full blur-[120px] animate-pulse" />
+        
+        {/* Secondary Indigo - Top Left */}
+        <div className="absolute -top-[5%] -left-[10%] w-[500px] h-[500px] bg-[#4f46e5]/10 rounded-full blur-[120px] opacity-60" />
+      </div>
 
-      <OrbAnimation />
+      {/* <OrbAnimation /> */}
+      
+      {/* Stars Animation Background */}
+      <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
+        <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-16 lg:py-24 relative z-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
           
           {/* Left - Text Content */}
           <div className="lg:col-span-7 scott">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
+            <div className="relative">
               <div className="flex items-center gap-3 mb-8">
                 <span className="w-12 h-[2px] bg-[#e8622a]"></span>
                 <span className="text-[#e8622a] text-xs sm:text-sm font-bold tracking-[0.4em] uppercase">
@@ -54,51 +61,57 @@ export default function Hero({ title, highlight, description }: HeroProps) {
               </p>
               
               <div className="flex flex-wrap items-center gap-6">
-                <Link
-                  href="/contact-us"
-                  className="group relative inline-flex items-center gap-3 bg-[#e8622a] hover:bg-[#f07040] text-white px-10 py-5 rounded-full text-base font-black transition-all duration-300 hover:scale-105 active:scale-95 shadow-2xl shadow-[#e8622a]/30"
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
                 >
-                  Let&apos;s Innovate Together.
-                  <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center group-hover:translate-x-1 transition-transform">
-                    <span className="text-white text-xs">→</span>
-                  </div>
-                </Link>
+                  <Link
+                    href="/contact-us"
+                    className="group relative inline-flex items-center gap-3 bg-[#e8622a] hover:bg-[#f07040] text-white px-10 py-5 rounded-full text-base font-black transition-all duration-300 shadow-2xl shadow-[#e8622a]/30"
+                  >
+                    Let&apos;s Innovate Together.
+                    <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center group-hover:translate-x-1 transition-transform">
+                      <span className="text-white text-xs">→</span>
+                    </div>
+                  </Link>
+                </motion.div>
                 
-                <Link
-                  href="/case-studies"
-                  className="group flex items-center gap-3 text-white/60 hover:text-white transition-colors py-4 px-6 font-bold"
+                <motion.div
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.6 }}
                 >
-                  View Case Studies <span className="text-white/20 group-hover:text-[#e8622a]">/</span>
-                </Link>
+                  <Link
+                    href="/case-studies"
+                    className="group flex items-center gap-3 text-white/60 hover:text-white transition-colors py-4 px-6 font-bold"
+                  >
+                    View Case Studies <span className="text-white/20 group-hover:text-[#e8622a]">/</span>
+                  </Link>
+                </motion.div>
               </div>
-            </motion.div>
+            </div>
           </div>
 
-          {/* Right - Awards & Badges Grid */}
+          {/* Right - Awards & Certificates Image */}
           <div className="lg:col-span-12 xl:col-span-5 flex flex-col items-center xl:items-end">
-            <motion.div 
-               initial={{ opacity: 0, scale: 0.9 }}
-               animate={{ opacity: 1, scale: 1 }}
-               transition={{ duration: 1, delay: 0.2 }}
-               className="grid grid-cols-2 gap-4 sm:gap-6 items-center"
-            >
-              {[
-                { label: "Most Reviewed", subLabel: "UX Design Co.", icon: "★", location: "Global" },
-                { label: "Top Agency", subLabel: "Web Development", icon: "✦", location: "Clutch" },
-                { label: "Trusted Partners", subLabel: "App Development", icon: "✓", location: "Mumbai" },
-                { label: "Verified Elite", subLabel: "Shopify Partners", icon: "◈", location: "2024" }
-              ].map((badge, idx) => (
-                <div key={idx} className={`w-36 h-40 group relative bg-[#121110]/80 backdrop-blur-md border border-white/5 rounded-3xl flex flex-col items-center justify-center p-4 text-center hover:border-[#e8622a]/40 transition-all duration-500 ${idx % 2 === 1 ? 'translate-y-8' : ''}`}>
-                  <div className="absolute inset-0 bg-gradient-to-b from-[#e8622a]/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-3xl" />
-                  <div className="text-[9px] text-gray-500 uppercase tracking-widest mb-1">{badge.label}</div>
-                  <div className="text-[10px] text-white/80 font-bold mb-3 leading-tight">{badge.subLabel}</div>
-                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-3 transition-colors duration-500 ${idx % 2 === 0 ? 'bg-[#e8622a]/10 text-[#e8622a]' : 'bg-white/5 text-white/30 group-hover:bg-[#e8622a] group-hover:text-white'}`}>
-                    <span className="text-xl leading-none">{badge.icon}</span>
-                  </div>
-                  <div className="font-black text-white/20 group-hover:text-white/40 text-xs transition-colors">Clutch</div>
-                </div>
-              ))}
-            </motion.div>
+            <div className="relative w-full max-w-[480px] xl:max-w-full">
+              <div className="relative flex flex-col items-end gap-6">
+                <img 
+                  src="/assets/certificated-new.webp" 
+                  alt="WEQ Technologies Awards" 
+                  className="relative w-[67%] h-auto grayscale drop-shadow-[0_20px_50px_rgba(232,98,42,0.15)]"
+                />
+
+                <img 
+                  src="/assets/Verfifed_Agency_Hexagonal.webp" 
+                  alt="DesignRush Verified Agency" 
+                  className="relative w-[32%] h-auto grayscale drop-shadow-[0_20px_50px_rgba(232,98,42,0.15)] mr-[17.5%]"
+                />
+              </div>
+            </div>
           </div>
         </div>
 

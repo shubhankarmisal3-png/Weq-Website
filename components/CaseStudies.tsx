@@ -23,7 +23,7 @@ const fallbackCaseStudies = [
     subtitle: 'Business Intelligence',
     tags: ['UI/UX Design', 'Web App'],
     href: '/case-studies/bregoland',
-    color: '#d45a24',
+    color: '#3b82f6',
     description: 'End-to-end business analytics and management dashboard for SMEs.',
     icon: Shield
   },
@@ -33,7 +33,7 @@ const fallbackCaseStudies = [
     subtitle: 'Real Estate Learning',
     tags: ['UI/UX Design', 'LMS App'],
     href: '/case-studies/edstate',
-    color: '#c04e1e',
+    color: '#8b5cf6',
     description: 'An e-learning platform tailored for real estate professionals and learners.',
     icon: Globe
   },
@@ -83,21 +83,34 @@ export default function CaseStudies() {
 
 function CaseStudyCard({ cs, index }: { cs: any, index: number }) {
   const Icon = cs.icon || Zap;
+  const [isHovered, setIsHovered] = React.useState(false);
   
   return (
     <AnimatedSection delay={index * 0.15} y={30}>
       <Link
         href={cs.href}
-        className="group relative flex flex-col h-full bg-[#121110] border border-white/5 p-12 rounded-[3.5rem] overflow-hidden hover:border-[#e8622a]/30 transition-all duration-700 hover:-translate-y-3"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        className="group relative flex flex-col h-full bg-[#121110] border border-white/5 p-12 rounded-[3.5rem] overflow-hidden transition-all duration-700 hover:-translate-y-3"
+        style={{ borderColor: isHovered ? `${cs.color}4d` : 'rgba(255,255,255,0.05)' }}
       >
         {/* Hover Glow Effect */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#e8622a]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+        <div 
+          className="absolute inset-0 bg-gradient-to-br to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" 
+          style={{ backgroundImage: `linear-gradient(to bottom right, ${cs.color}1a, transparent)` }}
+        />
         
         <div className="flex items-center justify-between mb-12 relative z-10">
-           <div className="w-20 h-20 bg-white/5 rounded-[1.5rem] flex items-center justify-center text-[#e8622a] group-hover:bg-[#e8622a] group-hover:text-white transition-all duration-500 group-hover:scale-110">
+           <div 
+            className="w-20 h-20 bg-white/5 rounded-[1.5rem] flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:text-white"
+            style={{ color: cs.color, backgroundColor: isHovered ? cs.color : 'rgba(255,255,255,0.05)' }}
+           >
               <Icon className="w-9 h-9" />
            </div>
-           <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/30 group-hover:text-white group-hover:border-[#e8622a] transition-all duration-500">
+           <div 
+            className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/30 transition-all duration-500 group-hover:text-white"
+            style={{ borderColor: isHovered ? cs.color : 'rgba(255,255,255,0.1)' }}
+           >
               <MoveUpRight className="w-5 h-5" />
            </div>
         </div>
@@ -107,17 +120,24 @@ function CaseStudyCard({ cs, index }: { cs: any, index: number }) {
             {cs.tags.map((tag: string) => (
               <span
                 key={tag}
-                className="text-[9px] font-black text-white/40 uppercase tracking-[0.2em] bg-white/5 border border-white/10 rounded-full px-5 py-2 group-hover:text-[#e8622a] group-hover:border-[#e8622a]/30 transition-colors"
+                className="text-[9px] font-black uppercase tracking-[0.2em] bg-white/5 border border-white/10 rounded-full px-5 py-2 transition-colors"
+                style={{ color: isHovered ? cs.color : 'rgba(255,255,255,0.4)', borderColor: isHovered ? `${cs.color}4d` : 'rgba(255,255,255,0.1)' }}
               >
                 {tag}
               </span>
             ))}
           </div>
 
-          <h3 className="text-3xl font-black text-white mb-4 group-hover:text-[#e8622a] transition-colors leading-tight">
+          <h3 
+            className="font-black text-white mb-4 transition-colors leading-tight !text-[26px]"
+            style={{ color: isHovered ? cs.color : 'white' }}
+          >
             {cs.title}
           </h3>
-          <p className="text-[#e8622a] text-[10px] font-black uppercase tracking-[0.4em] mb-8 opacity-80">
+          <p 
+            className="text-[10px] font-black uppercase tracking-[0.4em] mb-8 opacity-80"
+            style={{ color: cs.color }}
+          >
             {cs.subtitle}
           </p>
           <p className="text-gray-500 text-lg leading-relaxed mb-12 flex-grow font-medium line-clamp-3 group-hover:text-gray-400 transition-colors">
@@ -126,7 +146,7 @@ function CaseStudyCard({ cs, index }: { cs: any, index: number }) {
 
           <div className="mt-auto pt-10 border-t border-white/5 flex items-center justify-between">
              <span className="text-white/40 group-hover:text-white font-black text-sm uppercase tracking-widest transition-colors">Case Study</span>
-             <ArrowRight className="w-6 h-6 text-[#e8622a] group-hover:translate-x-3 transition-transform" />
+             <ArrowRight className="w-6 h-6 transition-transform group-hover:translate-x-3" style={{ color: cs.color }} />
           </div>
         </div>
       </Link>

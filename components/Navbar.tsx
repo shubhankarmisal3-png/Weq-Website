@@ -41,17 +41,17 @@ export default function Navbar() {
                   <>
                     <Link
                       href={link.href}
-                      className="flex items-center gap-1 px-4 py-2 text-sm text-gray-200 hover:text-white transition-colors rounded-md hover:bg-white/5"
+                      className="flex items-center gap-1 px-4 py-2 text-sm text-gray-200 hover:text-[#e8622a] transition-colors rounded-md hover:bg-white/5"
                     >
                       {link.label}
                       <ChevronDown className="w-3.5 h-3.5 opacity-70 group-hover:rotate-180 transition-transform duration-200" />
                     </Link>
-                    <div className="dropdown-menu absolute top-full left-0 mt-1 w-52 bg-[#262220] border border-[#3a3330] rounded-xl shadow-2xl py-2 z-50">
+                    <div className="dropdown-menu absolute top-full left-0 mt-1 w-52 bg-[#121110] border border-white/10 rounded-xl shadow-2xl py-2 z-50 backdrop-blur-3xl">
                       {link.children.map((child) => (
                         <Link
                           key={child.label}
                           href={child.href}
-                          className="block px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-[#e8622a]/10 hover:pl-6 transition-all duration-200"
+                          className="block px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-[#e8622a] hover:pl-6 transition-all duration-200"
                         >
                           {child.label}
                         </Link>
@@ -61,7 +61,7 @@ export default function Navbar() {
                 ) : (
                   <Link
                     href={link.href}
-                    className="px-4 py-2 text-sm text-gray-200 hover:text-white transition-colors rounded-md hover:bg-white/5"
+                    className="px-4 py-2 text-sm text-gray-200 hover:text-[#e8622a] transition-colors rounded-md hover:bg-white/5"
                   >
                     {link.label}
                   </Link>
