@@ -53,7 +53,7 @@ export default function Services({ apiServices }: { apiServices?: any[] }) {
     : fallbackServices.map(s => ({...s, icon: serviceIconsMap[s.id] || Globe}));
 
   const serviceThemes: Record<string, { color: string; glow: string }> = {
-    'digital-transformation': { color: '#e8622a', glow: 'from-[#e8622a]/10' },
+    'digital-transformation': { color: '#00e7a9', glow: 'from-[#00e7a9]/10' },
     'product-engineering': { color: '#8b5cf6', glow: 'from-[#8b5cf6]/10' },
     'website-development': { color: '#06b6d4', glow: 'from-[#06b6d4]/10' },
     'ux-design': { color: '#f43f5e', glow: 'from-[#f43f5e]/10' },
@@ -93,14 +93,14 @@ export default function Services({ apiServices }: { apiServices?: any[] }) {
         </div>
 
         {/* Services Blocks */}
-        <div className="flex flex-col gap-32 lg:gap-48">
+        <div className="flex flex-col gap-16 lg:gap-48">
           {servicesToRender.map((service, index) => {
             const Icon = service.icon || Globe;
             const isEven = index % 2 === 1;
             const theme = serviceThemes[service.id] || (isEven ? serviceThemes['product-engineering'] : serviceThemes['digital-transformation']);
 
             return (
-              <div key={service.id} className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-16 lg:gap-32`}>
+              <div key={service.id} className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-10 lg:gap-32`}>
                 
                 {/* Sub-items Side */}
                 <div className="w-full lg:w-3/5">
